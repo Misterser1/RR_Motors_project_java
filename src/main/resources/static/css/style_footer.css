@@ -1,0 +1,14 @@
+html, body {
+    height: 100%; /* Задаем высоту 100% для html и body */
+    margin: 0; /* Убираем отступы */
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1; /* Этот блок займет оставшееся пространство */
+}
+
+footer {
+    margin-top: auto; /* Футер будет прижат к низу */
+}

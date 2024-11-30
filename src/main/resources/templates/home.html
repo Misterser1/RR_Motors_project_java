@@ -1,0 +1,153 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${title}"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style_footer.css">
+    <link rel="stylesheet" href="/css/style_font.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <style>
+        .swiper-container {
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .swiper-slide {
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+
+        .swiper-slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3); /* Черный с прозрачностью */
+            z-index: 1;
+        }
+
+        .swiper-slide-caption {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #fff;
+            opacity: 0; /* Текст скрыт по умолчанию */
+            transition: opacity 1s ease; /* Плавное появление */
+            z-index: 2;
+        }
+
+        .swiper-slide-active .swiper-slide-caption {
+            opacity: 1;
+        }
+
+        /* Анимации для текста */
+        .swiper-slide-caption h2,
+        .swiper-slide-caption p{
+            opacity: 0; /* Скрыть текст на всех слайдах */
+            transition: opacity 1s ease;
+        }
+
+        /*Размер шрифта */
+        .swiper-slide-caption h2 {
+        font-size: 70px;
+
+        .swiper-slide-caption p {
+        font-size: 30px;
+        }
+
+
+        .swiper-slide-active .swiper-slide-caption h2 {
+            opacity: 1;
+            animation: fadeInDown 1s forwards; /* Появление h2 */
+        }
+        .swiper-slide-active .swiper-slide-caption p {
+            opacity: 1;
+            animation: fadeInUp 2s forwards; /* Появление p */
+        }
+    </style>
+
+</head>
+<body>
+<header th:insert="blocks/header :: header"></header>
+
+<main>
+    <!-- Секция слайдера -->
+    <section class="bg-outer-space">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide" style="background-image: url('/image_home/home-slide-1-2050x1337.jpg');">
+                    <div class="swiper-slide-caption">
+                        <h2 class="text-uppercase animate__animated">Удобство</h2>
+                        <p class="text-uppercase animate__animated">Высочайший уровень комфорта</p>
+                    </div>
+                </div>
+                <div class="swiper-slide" style="background-image: url('/image_home/home-slide-2-2050x1337.jpg');">
+                    <div class="swiper-slide-caption">
+                        <h2 class="text-uppercase animate__animated h2_slide">Роскошь</h2>
+                        <p class="text-uppercase animate__animated p_slide">Лучшие модели</p>
+                    </div>
+                </div>
+                <div class="swiper-slide" style="background-image: url('/image_home/home-slide-3-2050x1337.jpg');">
+                    <div class="swiper-slide-caption">
+                        <h2 class="text-uppercase animate__animated">Стиль</h2>
+                        <p class="text-uppercase animate__animated">Парк стильных автомобилей</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Пагинация -->
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
+</main>
+
+<footer th:insert="blocks/footer :: footer"></footer>
+
+<script>
+    // Инициализация Swiper с автопрокруткой
+    const swiper = new Swiper('.swiper-container', {
+        loop: true,
+        autoplay: {
+            delay: 4000, // Задержка между слайдами
+            disableOnInteraction: false,
+        },
+        speed: 1000,
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        allowTouchMove: false, // Отключить управление пользователем
+        on: {
+            slideChangeTransitionStart: function () {
+                // Убираем анимацию с неактивных слайдов
+                document.querySelectorAll('.swiper-slide-caption h2').forEach(el => el.classList.remove('animate__fadeInDown'));
+                document.querySelectorAll('.swiper-slide-caption p').forEach(el => el.classList.remove('animate__fadeInUp'));
+            },
+            slideChangeTransitionEnd: function () {
+                // Добавляем анимацию для активного слайда
+                const activeSlide = document.querySelector('.swiper-slide-active .swiper-slide-caption');
+                if (activeSlide) {
+                    activeSlide.querySelector('h2').classList.add('animate__fadeInDown');
+                    activeSlide.querySelector('p').classList.add('animate__fadeInUp');
+                }
+            }
+        }
+    });
+</script>
+
+</body>
+</html>

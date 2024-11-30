@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${title}">Про нас - RR Motors</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style_footer.css">
+    <link rel="stylesheet" href="/css/style_font.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900&display=swap" rel="stylesheet">
+</head>
+<body>
+<header th:insert="blocks/header :: header"></header>
+
+<main class="container mt-5">
+    <h1 class="text-center mb-4">О нашем проекте</h1>
+    <section>
+        <h2>История машин</h2>
+        <p>Наш проект создан для того, чтобы поделиться с вами историей автомобилей, познакомить с их мощностью, дизайном и эпохами, которые они олицетворяют. Мы исследуем самые известные модели, их эволюцию и влияние на автомобильную индустрию.</p>
+    </section>
+
+    <section class="mt-5">
+        <h2>Модели автомобилей</h2>
+        <p>Каждая модель — это шедевр инженерной мысли. Мы подробно рассказываем о каждой модели, начиная с её истории и заканчивая техническими характеристиками, такими как мощность и особенности управления.</p>
+        <div class="row">
+            <div class="col-12 col-md-4">
+                <div class="card mb-4">
+                    <img src="/image_home/home-slide-1-2050x1337.jpg" class="card-img-top" alt="Модель автомобиля">
+                    <div class="card-body">
+                        <h5 class="card-title">Модель 1</h5>
+                        <p class="card-text">Описание модели, её мощность, особенности.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Добавьте другие карточки для других моделей -->
+        </div>
+    </section>
+
+    <section class="mt-5">
+        <h2>Технические характеристики</h2>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>Модель</th>
+                <th>Мощность (л.с.)</th>
+                <th>Год выпуска</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Модель 1</td>
+                <td>200</td>
+                <td>2020</td>
+            </tr>
+            <tr>
+                <td>Модель 2</td>
+                <td>250</td>
+                <td>2021</td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+</main>
+
+<footer th:insert="blocks/footer :: footer"></footer>
+</body>
+</html>
